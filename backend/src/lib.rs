@@ -1,4 +1,5 @@
 pub mod error;
+pub mod features;
 
 use actix_web::middleware::Logger;
 use actix_web::{App, HttpServer, dev::Server};
@@ -10,6 +11,7 @@ pub fn run(listener: TcpListener) -> std::io::Result<Server> {
             Logger::new("ip=%{r}a \"%r\" code=%s size=%b time=%T")
                 .exclude("/.well-known/appspecific/com.chrome.devtools.json"),
         )
+        .configure(features::configure)
     })
     .listen(listener)?
     .run();
