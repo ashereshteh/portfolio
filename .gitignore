@@ -1,0 +1,14 @@
+# Scripts
+*.sh
+*.bash
+
+# misc
+.DS_Store
+
+# Environment variables
+.env
+
+# IDEs
+/.idea
+/.vscode
+/.vs
