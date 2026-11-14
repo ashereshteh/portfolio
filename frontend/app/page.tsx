@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { CodeBackground } from "./components/CdeBackground";
+import { CodeBackground } from "./components/CodeBackground";
 import { QuoteCard, QuoteCardSkeleton } from "./components/QuoteCard";
 
 export default function Home() {
