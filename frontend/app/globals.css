@@ -1,12 +1,55 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
+
   --font-iran-sans-x: "iranSansX", "iranSansX Fallback";
+
+  --background: #0b0d12;  /* پس‌زمینه‌ی اصلی */
+  --surface: #12151c;     /* کارت‌ها و باکس‌ها */
+  --border: #232733;
+  --foreground: #e8eaf0;  /* متن اصلی */
+  --muted: #9aa1b2;       /* متن ثانویه */
+  --accent: #8b9bff;      /* رنگ تاکیدی */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+}
+
+@theme {
+  --animate-fade-up: fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-shine: shine 5s ease-in-out infinite;
+  --animate-code-scroll: code-scroll 80s linear infinite;
+  --animate-draw: draw 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(20px); filter: blur(8px); }
+    to   { opacity: 1; transform: translateY(0);    filter: blur(0); }
+  }
+  /* خط نور از راست به چپ می‌گذره، بعد کمی مکث و دوباره */
+  @keyframes shine {
+    0%        { background-position: 0 50%; }
+    70%, 100% { background-position: 100% 50%; }
+  }
+  @keyframes code-scroll {
+    from { transform: translateY(0); }
+    to   { transform: translateY(-50%); }
+  }
+  @keyframes draw {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
 }
 
 body {
+  background: var(--background);
+  color: var(--foreground);
   font-family: var(--font-iran-sans-x), Arial, Helvetica, sans-serif;
 }
 
