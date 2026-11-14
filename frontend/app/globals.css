@@ -3,8 +3,33 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --font-iran-sans-x: "iranSansX", "iranSansX Fallback";
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-iran-sans-x), Arial, Helvetica, sans-serif;
+}
+
+.ss01-persian-numbers {
+  -moz-font-feature-settings: "ss01";
+  -webkit-font-feature-settings: "ss01";
+  font-feature-settings: "ss01";
+}
+
+.ss03-horizontal-align-numbers {
+  -moz-font-feature-settings: "ss03";
+  -webkit-font-feature-settings: "ss03";
+  font-feature-settings: "ss03";
+}
+
+.ss04-vertical-align-numbers {
+  -moz-font-feature-settings: "ss04";
+  -webkit-font-feature-settings: "ss04";
+  font-feature-settings: "ss04";
+}
+
+.ss05-kaf-swash {
+  -moz-font-feature-settings: "ss05";
+  -webkit-font-feature-settings: "ss05";
+  font-feature-settings: "ss05";
 }

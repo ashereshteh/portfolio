@@ -56,7 +56,7 @@ async function QuoteSection() {
 export default function Home() {
     return (
         <>
-            <h1>امیرحسین عمادی</h1>
+            <h1 className="font-bold">امیرحسین عمادی</h1>
             <p>متن به عنوان تست!</p>
             <hr/>
             <Suspense fallback={<p>درحال بارگذاری...</p>}>
