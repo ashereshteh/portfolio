@@ -7,7 +7,17 @@ async fn main() -> std::io::Result<()> {
     env_logger::init_from_env(env_logger::Env::default().default_filter_or("info"));
 
     let addr = std::env::var("BIND_ADDR").unwrap_or_else(|_| "127.0.0.1:8080".into());
-    log::info!("server listening on http://{addr}");
     let listener = TcpListener::bind(addr)?;
-    backend::run(listener)?.await
+
+    let url = std::env::var("DATABASE_URL").expect("DATABASE_URL must be set!");
+    let pool = backend::db::connect(&url)
+        .await
+        .expect("failed to connect to database!");
+
+    sqlx::migrate!(".//migrations")
+        .run(&pool)
+        .await
+        .expect("failed to run database migrations!");
+
+    backend::run(listener, pool)?.await
 }
