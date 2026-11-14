@@ -45,7 +45,7 @@ impl ResponseError for AppError {
             details: match self {
                 AppError::NotFound(msg) => msg.to_string(),
                 AppError::BadRequest(msg) => msg.to_string(),
-                _ => "Nothing to show!".to_string(),
+                _ => "UNKNOWN".to_string(),
             },
         };
 

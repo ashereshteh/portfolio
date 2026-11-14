@@ -1,12 +1,14 @@
-use super::models::Quote;
 use crate::error::AppError;
-use actix_web::{HttpResponse, get};
+use actix_web::{HttpResponse, get, web};
+use sqlx::PgPool;
 
 #[get("")]
-pub async fn random() -> Result<HttpResponse, AppError> {
-    Ok(HttpResponse::Ok().json(Quote {
-        id: 1,
-        sentence: "گشتم نبود ، نگرد نیست!".to_string(),
-        owner: "امیرحسین عمادی".to_string(),
-    }))
+pub async fn random(pool: web::Data<PgPool>) -> Result<HttpResponse, AppError> {
+    let some_quote = super::repositories::random(&pool).await?;
+
+    let Some(quote) = some_quote else {
+        return Err(AppError::NotFound("QUOTE_NOT_FOUND".to_string()));
+    };
+
+    Ok(HttpResponse::Ok().json(quote))
 }
